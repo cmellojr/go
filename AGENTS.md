@@ -39,6 +39,8 @@ O código deve ser organizado de forma modular para facilitar o aprendizado prog
 * `/internal`: Lógica de negócio protegida (exemplos de encapsulamento).
 * `/examples`: Trechos de código isolados para estudo de conceitos.
 
+**Nota sobre Complexidade:** A estrutura robusta acima (`/cmd` e `/internal`) foca em projetos maiores ou na prática de padrões da indústria. Para exercícios rápidos ou scripts de arquivo único, mantenha a simplicidade: coloque o código (ex: `main.go`) diretamente na raiz do projeto ou em um pacote simples.
+
 ---
 
 ## 📝 Instruções de Prompt para o Jules
