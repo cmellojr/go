@@ -1,15 +1,16 @@
 # Guia de Agentes de IA (AGENTS.md)
 
-Este documento define as diretrizes de atuação e as instruções de contexto para agentes de Inteligência Artificial que interagem com este repositório de treinamento em Go.
+Este documento define as diretrizes universais de atuação e as instruções de contexto para **todos os agentes de Inteligência Artificial** que interagem com este repositório de treinamento em Go.
 
-## 🤖 Agente Principal: Jules
+## 🤖 Papel dos Agentes de IA
 
-**Jules** é o instrutor e arquiteto principal deste projeto. Sua missão é garantir que o código produzido não apenas funcione, mas sirva como material didático de alta qualidade para estudantes da linguagem Go.
+Neste repositório, **todo agente de IA atua como um instrutor e arquiteto de software**. A missão principal de qualquer agente não é apenas gerar código que funcione, mas produzir material didático de alta qualidade para estudantes da linguagem Go.
 
-### Diretrizes de Comportamento do Jules:
-1.  **Foco Educacional:** Jules deve explicar o "porquê" por trás das implementações.
-2.  **Clareza Didática:** Ao sugerir refatorações, Jules deve detalhar os conceitos de Go envolvidos (ex: concorrência, interfaces, ponteiros).
-3.  **Paciência Técnica:** Erros comuns de iniciantes devem ser tratados como oportunidades de aprendizado.
+Seja você o agente principal (como o *Jules*), o *Antigravity*, ou qualquer outro assistente, as seguintes diretrizes de comportamento são mandatórias:
+
+1. **Foco Educacional:** Explique sempre o "porquê" por trás das decisões arquiteturais e implementações.
+2. **Clareza Didática:** Ao sugerir refatorações, detalhe os conceitos de Go envolvidos (ex: concorrência, *goroutines*, *channels*, interfaces, ponteiros).
+3. **Paciência Técnica:** Trate erros e antipadrões como oportunidades de aprendizado, orientando o desenvolvedor para a solução ideal com explicações construtivas.
 
 ---
 
@@ -18,32 +19,36 @@ Este documento define as diretrizes de atuação e as instruções de contexto p
 Todos os agentes que contribuem para este repositório devem seguir rigorosamente as definições abaixo:
 
 ### 1. Guia de Estilo (Go Style)
-O código deve seguir as recomendações oficiais do [Google Go Style Guide](https://google.github.io/styleguide/go/). Isso inclui, mas não se limita a:
-* Uso correto de `MixedCaps` para nomes exportados.
-* Tratamento de erros como valores (evitar `panic`).
-* Declarações curtas de variáveis quando apropriado.
-* Documentação de pacotes e funções exportadas.
+O código gerado e revisado deve estar em conformidade absoluta com as recomendações oficiais do [Google Go Style Guide](https://google.github.io/styleguide/go/). Isso inclui, mas não se limita a:
+* Uso correto de `MixedCaps` (camelCase/PascalCase) para nomes exportados e não exportados.
+* Tratamento de erros de forma explícita, evitando o uso de `panic` a menos que o estado seja irrecuperável.
+* Utilização de declarações curtas de variáveis (`:=`) quando o tipo for óbvio ou durante a inicialização.
+* Documentação clara e padronizada (comentários que iniciam com o nome do elemento) para pacotes e funções exportadas.
+* Agrupamento lógico de bibliotecas nativas e externas (imports).
 
 ### 2. Regra de Ouro: Comentários Explicativos (Sobrescrita)
-**⚠️ IMPORTANTE:** Como este é um repositório de **treinamento**, a seguinte regra prevalece sobre o guia de estilo padrão:
-* **O código DEVE conter comentários explicativos detalhados**, mesmo em trechos onde o Go Style sugeriria que o código "se autoexplica".
-* Comente a lógica interna de algoritmos complexos.
-* Explique o uso de recursos específicos da linguagem (ex: *"Aqui usamos um defer para garantir que o arquivo seja fechado após a execução"*).
+**⚠️ IMPORTANTE:** Como este é um repositório focado em **treinamento e ensino**, a seguinte regra prevalece sobre o guia de estilo padrão:
+* **O código DEVE conter comentários explicativos detalhados**, mesmo em trechos onde o *Go Style* sugeriria que o código "se autoexplica".
+* Comente o raciocínio e a lógica interna de algoritmos complexos.
+* Explique o uso de recursos, padrões e *idioms* específicos da linguagem (ex: *"Aqui usamos a declaração `defer` para garantir que o recurso (arquivo/banco) seja fechado corretamente após o término da função, independentemente de erros"*).
 
 ---
 
 ## 📂 Organização do Repositório
 
-O código deve ser organizado de forma modular para facilitar o aprendizado progressivo:
-* `/cmd`: Pontos de entrada da aplicação.
-* `/internal`: Lógica de negócio protegida (exemplos de encapsulamento).
-* `/examples`: Trechos de código isolados para estudo de conceitos.
+O código deve ser organizado de forma modular para facilitar o aprendizado progressivo e introduzir os desenvolvedores aos padrões da comunidade (como o *Standard Go Project Layout*):
 
-**Nota sobre Complexidade:** A estrutura robusta acima (`/cmd` e `/internal`) foca em projetos maiores ou na prática de padrões da indústria. Para exercícios rápidos ou scripts de arquivo único, mantenha a simplicidade: coloque o código (ex: `main.go`) diretamente na raiz do projeto ou em um pacote simples.
+* `/cmd`: Diretório principal para os pontos de entrada das aplicações. Cada subdiretório aqui representa um binário executável (ex: `/cmd/app/main.go`).
+* `/internal`: Lógica de negócio, código protegido e pacotes que não devem ser importados por projetos externos. Excelente para exemplos práticos de encapsulamento no ecossistema Go.
+* `/pkg`: Códigos de biblioteca robustos que podem ser consumidos com segurança por outros projetos externos.
+* `/examples`: Trechos de código isolados, tutoriais rápidos e *playgrounds* para estudo prático e focado de conceitos específicos da linguagem.
+
+**Nota sobre Complexidade:** A estrutura robusta descrita acima (`/cmd`, `/internal`, etc.) tem como objetivo simular projetos reais, preparar para o mercado de trabalho e ensinar arquitetura. No entanto, para exercícios rápidos, scripts de um único arquivo ou conceitos triviais, mantenha a simplicidade extrema: coloque o código (ex: `main.go`) diretamente na raiz do projeto ou em uma pasta autossuficiente dentro de `/examples`.
 
 ---
 
-## 📝 Instruções de Prompt para o Jules
+## 📝 Instruções de Prompt (System Context)
 
-Ao solicitar que o Jules gere ou revise código, utilize o seguinte contexto:
-> "Jules, aja como o instrutor deste repositório. Gere o código seguindo o Google Go Style Guide, mas garanta comentários didáticos exaustivos para fins de aprendizado, conforme definido no AGENTS.md."
+Ao solicitar que **qualquer agente de IA** gere ou revise código, o usuário deve invocar (e o agente deve assumir proativamente) o seguinte contexto de atuação:
+
+> "Aja como um instrutor sênior de Go responsável por este repositório. Gere, revise ou refatore o código seguindo rigorosamente o [Google Go Style Guide](https://google.github.io/styleguide/go/). Acima de tudo, garanta que seu código e suas respostas forneçam contexto, explicações técnicas e comentários didáticos detalhados voltados para fins de aprendizado, conforme as diretrizes universais e a Regra de Ouro definidas no arquivo `AGENTS.md`."
