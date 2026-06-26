@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
 func main() {
 	conferenceName := "Go Conference"
@@ -8,6 +11,7 @@ func main() {
 	var remainingTickets uint = 50
     // var bookings = [50]string  --> this is an array
 	// bookings[1] = "Nicole"
+	// bookings[0] = firstName + " " + lastName
 	bookings := []string{}
 	// this is a slice
 
@@ -25,11 +29,13 @@ func main() {
 		fmt.Println("Enter your first name: ")
 		fmt.Scan(&firstName)
 
-		fmt.Println("Enter how many tickets you want: ")
+		fmt.Println("Enter your last name")
+		fmt.Scan(&email)
+
+		fmt.Println("Enter the number of tickets: ")
 		fmt.Scan(&userTickets)
 
 		remainingTickets = remainingTickets - userTickets
-		// bookings[0] = firstName + " " + lastName
 		bookings = append(bookings, firstName + " " + lastName)
 
 		// fmt.Printf("The whole slice: %v\n", bookings)
@@ -40,7 +46,12 @@ func main() {
 		fmt.Printf("Thank you %v %v for booking %v tickets. You will receive a confirmation email at %v\n", firstName, lastName, userTickets, email)
 		fmt.Printf("%v tickets remaining for %v\n", remainingTickets, conferenceName)
 
-		fmt.Printf("These are all our bookings: %v\n", bookings)
+		firstNames := []string{}
+		for _, booking:= range bookings {
+			var names = string.Fields(booking)
+			firstNames = append(firtNames, names[0])
+		}
 
+		fmt.Printf("The first names of bookings are: %v\n", firstNames)
 	}
 }
