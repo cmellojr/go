@@ -39,7 +39,7 @@ func main() {
 		fmt.Scan(&userTickets)
 
 		var isValidName = len(firstName) >= 2 && len(lastName) >= 2
-		var isValidEmail strings.Contains(email, "@")
+		var isValidEmail = strings.Contains(email, "@")
 		var isValidTicketNumber = userTickets > 0 && userTickets <= remainingTickets
 
 		// isValidCity := city == "Singapore" || city == "London"
