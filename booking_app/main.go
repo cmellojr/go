@@ -30,6 +30,9 @@ func main() {
 		fmt.Scan(&firstName)
 
 		fmt.Println("Enter your last name")
+		fmt.Scan(&lastName)
+
+		fmt.Println("Enter your email address:")
 		fmt.Scan(&email)
 
 		fmt.Println("Enter the number of tickets: ")
